@@ -140,7 +140,7 @@ angular.module('gridster', [])
 			for (var h = 0; h < sizeY; ++h) {
 				for (var w = 0; w < sizeX; ++w) {
 					var item = this.getItem(row + h, column + w, excludeItems);
-					if (item && (!excludeItems || !$.inArray(item, excludeItems)) && !$.inArray(item, excludeItems)) {
+					if (item && (!excludeItems || $.inArray(item, excludeItems) === -1) && $.inArray(item, excludeItems) === -1) {
 						items.push(item);
 					}
 				}
@@ -159,7 +159,7 @@ angular.module('gridster', [])
 				if (!columns) {
 					continue;
 				}
-				var index = columns.indexOf(item);
+				var index = $.inArray(item, columns);
 				if (index !== -1) {
 					columns[index] = null;
 					break;
@@ -189,7 +189,7 @@ angular.module('gridster', [])
 					var items = this.grid[row];
 					if (items) {
 						var item = items[col];
-						if (item && (!excludeItems || excludeItems.indexOf(item) === -1) && item.sizeX >= sizeX && item.sizeY >= sizeY) {
+						if (item && (!excludeItems || $.inArray(item, excludeItems) === -1) && item.sizeX >= sizeX && item.sizeY >= sizeY) {
 							return item;
 						}
 					}
@@ -268,7 +268,7 @@ angular.module('gridster', [])
 		 */
 		this.moveOverlappingItems = function(item, ignoreItems) {
 			if (ignoreItems) {
-				if (ignoreItems.indexOf(item) === -1) {
+			    if ($.inArray(item, ignoreItems) === -1) {
 					ignoreItems = ignoreItems.slice(0);
 					ignoreItems.push(item);
 				}
