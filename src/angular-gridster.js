@@ -140,7 +140,7 @@ angular.module('gridster', [])
 			for (var h = 0; h < sizeY; ++h) {
 				for (var w = 0; w < sizeX; ++w) {
 					var item = this.getItem(row + h, column + w, excludeItems);
-					if (item && (!excludeItems || excludeItems.indexOf(item) === -1) && items.indexOf(item) === -1) {
+					if (item && (!excludeItems || !$.inArray(item, excludeItems)) && !$.inArray(item, excludeItems)) {
 						items.push(item);
 					}
 				}
