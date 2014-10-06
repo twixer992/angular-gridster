@@ -1,4 +1,4 @@
-'use strict';
+'use strict';      
 
 angular.module('gridster', [])
 
@@ -1135,7 +1135,8 @@ angular.module('gridster', [])
 				item.setSizeY(item.sizeY);
 				item.setSizeX(item.sizeX);
 
-				var itemResized = (originalWidth !== item.sizeX || originalHeight !== item.sizeY);
+			    var itemResized = true;
+                    //(originalWidth !== item.sizeX || originalHeight !== item.sizeY);
 
 				scope.$apply(function() {
 					// callback only if item really changed size
